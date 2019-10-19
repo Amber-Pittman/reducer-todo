@@ -3,23 +3,22 @@
 // TODOs
 export const initialState = [
     {
-        item: 'Learn about reducers',
+        item: 'Learn about reducers Part I',
         completed: false,
         id: 3892987589
     },
 
     {
-        item: 'Learn about reducers',
+        item: 'Learn about reducers Part II',
         completed: false,
-        id: 3892987589
+        id: 3892987909
     },
 
     {
-        item: 'Learn about reducers',
+        item: 'Learn about reducers Part III',
         completed: false,
-        id: 3892987589
-    },
-
+        id: 3892987591
+    }
 ]
 
 // add a reducer file and build out a simple reducer 
