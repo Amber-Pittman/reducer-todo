@@ -23,20 +23,42 @@ export const initialState = {
   ]
 }
 
+console.log("This is the initialState: ", initialState)
+
 // add a reducer file and build out a simple reducer 
 //   with just a default return for now
   export function reducer(action, state) {
       switch (action.type) {
           case "ADD_TASK":
-              return {
-                  ...state, todoTasks: [...state.todoTasks, {
-                    item: action.payload,
-                    completed: false,
-                    id: new Date()
+              //console.log("This is the console log in Add Task for state: ", );
+            return {
+                ...state, todoTasks: [...state.todoTasks, {
+                item: action.payload,
+                completed: false,
+                id: new Date()
+                }
+              ]  
+            }
+          case "TOGGLE_COMPLETED":
+              const toggle = state.todoTasks.map(item => {
+                  if (item.id === action.payload.id) {
+                      return {
+                          ...item, completed: !item.completed
+                      };
+                  } else {
+                      return item;
                   }
-                ]
-                  
+              });
+              return {
+                  ...state, todoTasks: toggle
               }
+            case "REMOVE_COMPLETE":
+                const removeCompleted = state.todoTasks.filter(item => {
+                    return !item.completed
+                })
+                return {
+                    ...state, todoTasks: removeCompleted
+                }
           default: 
             return state
       }

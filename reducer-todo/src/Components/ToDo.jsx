@@ -3,8 +3,8 @@ import { initialState, reducer } from "../reducers/reducer";
 import TodoList from "./TodoList";
 
 export default function ToDo() {
+    const [newTask, setNewTask] = useState('');
     const [state, dispatch] = useReducer(reducer, initialState);
-    const [newTask, setNewTask] = useState("");
 
     const handleChange = e => {
         setNewTask(e.target.value);
@@ -13,22 +13,34 @@ export default function ToDo() {
     // Build a function that will dispatch an action to add a new todo
     const handleSubmit = e => {
         e.preventDefault();
-        setNewTask("");
-        dispatch({ type: "ADD_TASK", payload: newTask});
+        dispatch({ type: 'ADD_TASK', payload: newTask });
+        setNewTask('');
     }
 
+    const handleComplete = e => {
+        e.preventDefault();
+        dispatch({ type: "REMOVE_COMPLETE"})
+    }
+
+
     return (
+    <div>
         <div>
-      {state.todoTasks.map((task, index) => (
-        <TodoList task={task} key={index} />
-      ))}
-      <form onSubmit={handleSubmit}>
-        <input
-          type='text' name='newTask' placeholder='Add a task'
-          value={newTask} onChange={handleChange}
-        />
-        <button type='submit'>Add</button>
-      </form>
+            {state.todoTasks.map((task, index) => (
+                <TodoList task={task} key={index} dispatch={dispatch} />
+            ))}
+        </div>
+            <form onSubmit={handleSubmit}>
+                <input
+                type='text' 
+                name='newTask' 
+                placeholder='Add a task'
+                value={newTask} 
+                onChange={handleChange}
+                />
+                <button type='submit' className="addBtn">Add</button>
+            </form>
+            <button onClick={handleComplete} className="delete">Delete</button>
     </div>
     )
 }
