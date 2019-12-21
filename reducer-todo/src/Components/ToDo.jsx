@@ -2,7 +2,7 @@ import React, { useState, useReducer } from "react";
 import { initialState, reducer } from "../reducers/reducer";
 import TodoList from "./TodoList";
 
-export default function ToDo() {
+ function ToDo() {
     const [newTask, setNewTask] = useState('');
     const [state, dispatch] = useReducer(reducer, initialState);
 
@@ -25,9 +25,12 @@ export default function ToDo() {
 
     return (
     <div>
-        <div>
+        <div className="tasks">
             {state.todoTasks.map((task, index) => (
-                <TodoList task={task} key={index} dispatch={dispatch} />
+                <TodoList task={task} 
+                          key={index} 
+                          dispatch={dispatch} 
+                />
             ))}
         </div>
             <form onSubmit={handleSubmit}>
@@ -43,4 +46,6 @@ export default function ToDo() {
             <button onClick={handleComplete} className="delete">Delete</button>
     </div>
     )
-}
+};
+
+export default ToDo;

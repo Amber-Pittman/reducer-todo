@@ -27,7 +27,7 @@ console.log("This is the initialState: ", initialState)
 
 // add a reducer file and build out a simple reducer 
 //   with just a default return for now
-  export function reducer(action, state) {
+  export function reducer(state, action) {
       switch (action.type) {
           case "ADD_TASK":
               //console.log("This is the console log in Add Task for state: ", );
@@ -44,7 +44,7 @@ console.log("This is the initialState: ", initialState)
                   if (item.id === action.payload.id) {
                       return {
                           ...item, completed: !item.completed
-                      };
+                      }
                   } else {
                       return item;
                   }
@@ -60,6 +60,6 @@ console.log("This is the initialState: ", initialState)
                     ...state, todoTasks: removeCompleted
                 }
           default: 
-            return state
+            return state;
       }
   }

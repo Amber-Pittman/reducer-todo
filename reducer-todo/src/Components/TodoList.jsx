@@ -1,7 +1,8 @@
 import React from "react";
-import { dispatch } from "rxjs/internal/observable/range";
+//import { dispatch } from "rxjs/internal/observable/range";
 
-const TodoList = ({ task }) => {
+const TodoList = ({ task, dispatch }) => {
+
     return (
         <div className="item" onClick={ () => 
           dispatch({ type: "TOGGLE_COMPLETED", payload: task})} >
